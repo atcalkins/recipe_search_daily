@@ -1,0 +1,14 @@
+body{
+  margin: 100px;
+
+}
+.search{
+
+
+}
+
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
