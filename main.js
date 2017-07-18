@@ -1,20 +1,25 @@
-let wrapper = document.querySelector(".content");
+let container = document.querySelector(".wrapper");
+let list = "";
+let mainSite = "https://crossorigin.me/http://www.recipepuppy.com/api/?q=search-term";
 
-fetch("https://crossorigin.me/http://www.recipepuppy.com/api").then(function(response) {
+
+let searchInput = document.querySelector("search");
+
+document.querySelector("button").addEventListener("click", function() {
+  console.log(searchInput.value);
+
+fetch(mainSite)
+.then(function(response) {
   if (response.status !== 200) {
     console.log(response.status);
-    return;
   }
-  response.json().then(function(data) {
-    console.log(data.name, response.url);
-    displayInfo(data);
+  response.json().then(function(recipeData) {
+    let results = recipeData.results;
+    results.forEach(function(recipe) {
+      list += `<img src=${recipe.thumbnail}>
+          <a href=${recipe.href}><h4>${recipe.title}</h4></a>`;
+
+      container.innerHTML = list;
+    });
   });
 });
-
-function displayInfo(data) {
-  let template = `
-
-`;
-    wrapper.innerHTML = template;
-
-}

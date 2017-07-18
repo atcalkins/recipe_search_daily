@@ -2,13 +2,37 @@ body{
   margin: 100px;
 
 }
-.search{
+
+.search input{
+  height: 20px;
+  width: 200px;
+}
+
+
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+
+li {
+  list-style: none;
+  border: solid black;
+  margin: 5px;
+  width: 150px;
+  height: 150px;
+  flex-wrap: wrap;
+}
+
+.top {
+  margin: 10px;
 
 
 }
 
-.wrapper {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.bottom {
+
+
 }
