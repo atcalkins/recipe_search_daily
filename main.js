@@ -1,25 +1,35 @@
-let container = document.querySelector(".wrapper");
-let list = "";
-let mainSite = "https://crossorigin.me/http://www.recipepuppy.com/api/?q=search-term";
+const recipeFound = document.querySelector("div");
+const searchButton = document.querySelector("button");
+const searchBar = document.querySelector("input");
 
+searchButton.addEventListener("click", function(e){
+  let mainSite = "http://CORS-Anywhere.HerokuApp.com/http://www.recipepuppy.com/api/";
+  e.preventDefault();
+  console.log(searchBar.value);
+  mainSite = `${mainSite}/?q=${searchBar.value}`;
+  fetch(mainSite)
+  .then(function(response) {
+    if(response.status !== 200) {
+      return;
+    }
+    response.json().then(function(data) {
+      console.log(data.results);
+      let recipeContainer = "";
+      data.results.forEach(function(items){
+            let template = `
+            <section class="top">
+            <span><a href="${items.href}">See Full Recipe</a></span>
+            <img src="${items.thumbnail}" alt="">
+            <h4>${items.title}</h1>
+            <b>Ingredients:</b>
+            <p>${items.ingredients}</p>
+            </section>
+            `;
+            recipeContainer += template;
 
-let searchInput = document.querySelector("search");
-
-document.querySelector("button").addEventListener("click", function() {
-  console.log(searchInput.value);
-
-fetch(mainSite)
-.then(function(response) {
-  if (response.status !== 200) {
-    console.log(response.status);
-  }
-  response.json().then(function(recipeData) {
-    let results = recipeData.results;
-    results.forEach(function(recipe) {
-      list += `<img src=${recipe.thumbnail}>
-          <a href=${recipe.href}><h4>${recipe.title}</h4></a>`;
-
-      container.innerHTML = list;
+        });
+          recipeFound.innerHTML = recipeContainer
+          searchBar.value="";
+      });
     });
   });
-});

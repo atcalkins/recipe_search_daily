@@ -1,38 +1,28 @@
-body{
-  margin: 100px;
-
-}
-
-.search input{
+.searchInput {
   height: 20px;
   width: 200px;
 }
 
-
-
 .wrapper {
-  width: 100%;
   display: flex;
-  justify-content: space-around;
-}
-
-
-li {
-  list-style: none;
-  border: solid black;
-  margin: 5px;
-  width: 150px;
-  height: 150px;
   flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px;
 }
 
 .top {
-  margin: 10px;
-
-
+  border: 1px solid;
+  margin: 25px;
+  width: 150px;
+  height: 250
+  text-align: center;
 }
 
-.bottom {
+a {
+  text-decoration: none;
+  color: black;
+}
 
-
+a:hover {
+  color: red;
 }
